@@ -1,0 +1,12 @@
+*.php
+
+/wp-admin
+/wp-content
+/wp-includes
+/data
+
+.htaccess
+
+*.txt
+
+*.html
