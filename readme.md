@@ -3,8 +3,10 @@
 
 ## run 
 
-```
+``` bash
+
 docker-compose up -d 
+
 ``` 
 
 
@@ -15,7 +17,7 @@ docker-compose up -d
 host : mysql
 port : 3307
 ``` 
-e.g : ```php  define('DB_HOST', 'mysql'); ```
+e.g : ```  define('DB_HOST', 'mysql'); ```
 
 
 ### elastic search 
@@ -30,24 +32,24 @@ e.g : ``` http://elastic:9200/ ```
 ## Wordpress elasticpress 
 
 
-Autosuggest ? : use this enpoint : ``` http://localhost:9200/_search ``` that will work for POST
+Autosuggest ? : use this enpdoint : ``` http://localhost:9200/_search ``` that will work for POST
 
 
 ## Issues ? 
 
-``` ps not a command ```
+```  ps: command not found ```
 
 
-``` 
-RUN apt-get update && apt-get install -y procps
+``` bash
+apt-get update && apt-get install -y procps
 
 ```
 
 Extend map count : 
 
-``` 
+For mac :
 
-MAC : 
+``` bash
 
 cd ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/
 echo "vm.max_map_count=262144" >> sysctl.con
