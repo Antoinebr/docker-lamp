@@ -35,6 +35,13 @@ e.g : ``` http://elastic:9200/ ```
 Autosuggest ? : use this enpdoint : ``` http://localhost:9200/_search ``` that will work for POST
 
 
+## Run containers on linux 
+
+You must create config file before typing ```docker-compose up -d``` otherwise docker will create folders instead of files. 
+
+In the docker-compose.yml Path must be changed from relative to absolute 
+
+
 ## Issues ? 
 
 ```  ps: command not found ```
