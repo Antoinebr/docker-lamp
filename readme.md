@@ -34,6 +34,64 @@ e.g : ``` http://elastic:9200/ ```
 
 Autosuggest ? : use this enpdoint : ``` http://localhost:9200/_search ``` that will work for POST
 
+### securing the instance 
+
+You can install X-Pack for Elasticsearch directly by running:
+
+```
+cd /usr/share/elasticsearch
+sudo bin/elasticsearch-plugin install x-pack
+```
+
+To continue the installation, enter y when prompted. This command will install the X-Pack plugin to your system. When installed, X-Pack enables authentication for Elasticsearch. The default username is elastic and password is changeme. You can check if authentication is enabled by running the same command you ran to check if Elasticsearch is working.
+
+```
+curl -XGET 'localhost:9200/?pretty'
+``` 
+
+Now the output will say that authentication has failed.
+```
+user@vultr:~# curl -XGET 'localhost:9200/?pretty'
+{
+  "error" : {
+    "root_cause" : [
+      {
+        "type" : "security_exception",
+        "reason" : "missing authentication token for REST request [/?pretty]",
+        "header" : {
+          "WWW-Authenticate" : "Basic realm=\"security\" charset=\"UTF-8\""
+        }
+      }
+    ],
+    "type" : "security_exception",
+    "reason" : "missing authentication token for REST request [/?pretty]",
+    "header" : {
+      "WWW-Authenticate" : "Basic realm=\"security\" charset=\"UTF-8\""
+    }
+  },
+  "status" : 401
+}
+```
+
+Change the default password changeme by running the following command.
+
+```
+curl -XPUT -u elastic:changeme 'localhost:9200/_xpack/security/user/elastic/_password?pretty' -H 'Content-Type: application/json' -d'
+{
+  "password": "NewElasticPassword"
+}
+'
+``` 
+
+Replace NewPassword with the actual password you want to use. You can check if the new password is set and Elasticsearch is working by running the following command.
+
+```
+curl -XGET -u elastic:NewElasticPassword 'localhost:9200/?pretty'    
+```
+
+Information from [here](https://www.vultr.com/docs/how-to-install-and-configure-elastic-stack-elasticsearch-logstash-and-kibana-on-ubuntu-17-04)
+
+
 
 ## Run containers on linux 
 
