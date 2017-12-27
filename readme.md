@@ -92,6 +92,40 @@ curl -XGET -u elastic:NewElasticPassword 'localhost:9200/?pretty'    
 Information from [here](https://www.vultr.com/docs/how-to-install-and-configure-elastic-stack-elasticsearch-logstash-and-kibana-on-ubuntu-17-04)
 
 
+To make auth request with WordPress
+
+```php 
+
+$response = wp_remote_post( 'http://elastic:9200/_search', array(
+
+		'body' => '	
+			{
+				"query": {
+					"query_string": {
+						"query": " '.$params['query'].' AND (post_type:attachment)"
+					}
+				}
+			}
+
+		',
+		'headers' => array( 
+			'content-type' => 'application/json; charset=UTF-8',
+			'Authorization' => 'Basic ' . base64_encode( 'LOGIN' . ':' . 'PASSWORD')
+		),
+	
+	));
+
+if ( is_wp_error( $response ) ) {
+   $error_message = $response->get_error_message();
+   echo "Something went wrong: $error_message";
+} else {
+
+	echo $response['body'];
+	die();	
+}
+
+``` 
+
 
 ## Run containers on linux 
 
