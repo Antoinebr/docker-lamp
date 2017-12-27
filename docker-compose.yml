@@ -1,5 +1,6 @@
 php_apache:
   image: webdevops/php-apache:7.1
+  restart: always
   links:
     - db:mysql
     - elasticsearch:elastic
@@ -10,15 +11,17 @@ php_apache:
     - ./config/php/php.ini/:/opt/docker/etc/php/php.ini
 db:
   image: mariadb
+  restart: always
   ports:
     - 3307:3306
   volumes:
-    - "./data/:/var/lib/mysql"
+    - "./data/mysql:/var/lib/mysql"
   environment: 
     MYSQL_ROOT_PASSWORD: examplepass
 
 elasticsearch:
   image: elasticsearch:latest
+  restart: always
   restart: always
   environment:
     ES_JAVA_OPTS: "-Xms750m -Xmx750m"
