@@ -8,7 +8,7 @@ php_apache:
     - 5555:80
   volumes:
     - ./:/app/
-    - ./config/php/php.ini/:/opt/docker/etc/php/php.ini
+    - ./config/php/php.ini:/opt/docker/etc/php/php.ini
 db:
   image: mariadb
   restart: always
