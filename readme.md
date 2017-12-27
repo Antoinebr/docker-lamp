@@ -45,6 +45,7 @@ sudo bin/elasticsearch-plugin install x-pack
 
 To continue the installation, enter y when prompted. This command will install the X-Pack plugin to your system. When installed, X-Pack enables authentication for Elasticsearch. The default username is elastic and password is changeme. You can check if authentication is enabled by running the same command you ran to check if Elasticsearch is working.
 
+**Restart ES first**
 ```
 curl -XGET 'localhost:9200/?pretty'
 ``` 
